@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🎉 Happy Birthday 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+      text-align: center;
+      background: linear-gradient(-45deg, #d23480, #222, #8fa7ce, #fff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Twinkling Stars */
+    .stars{
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 60px;
+      color: #fff;
+      text-shadow: 0 0 10px #ff6b6b, 0 0 20px #feca57, 0 0 40px #48dbfb;
+      animation: glow 2s ease-in-out infinite alternate;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ff6b6b, 0 0 30px #feca57, 0 0 50px #48dbfb; }
+      to { text-shadow: 0 0 40px #48dbfb, 0 0 60px #ff6b6b, 0 0 80px #feca57; }
+    }
+
+     
+
+    /* ====== Wishes Section ====== */
+    .wish-section {
+      margin: 30px auto;
+      font-size: 25px;
+      max-width: 80%;
+      color:white;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 20px;
+      text-shadow: 0 0 10px #000;
+      box-shadow: 0 0 20px #ff9ff3;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ====== Photo Gallery ====== */
+    .gallery {
+      margin: 30px auto 80px auto;
+      display: flex;
+      gap: 20px;
+      overflow-x: hidden;
+      padding: 20px;
+      max-width: 90%;
+      position: relative;
+      z-index: 1;
+    }
+    .gallery img {
+      width: 200px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #fff, 0 0 40px #ff6b6b;
+      transition: transform 0.4s;
+    }
+    .gallery img:hover { transform: scale(1.1); }
+    .gallery figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery figcaption {
+  margin-top: 8px;
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 0 8px #ff9ff3, 0 0 15px #48dbfb;
+  font-style: italic;
+}
+
+
+    /* ====== Fancy Gift Box ====== */
+    .gift-box {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 60px auto;
+      cursor: pointer;
+      perspective: 1000px;
+      animation: pulse 2s infinite;
+      z-index: 2;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .gift-box .box {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ff6b6b, #ff4757);
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4), 0 0 40px rgba(255,0,0,0.6);
+    }
+    .gift-box .lid {
+      position: absolute;
+      top: -60px;
+      width: 100%;
+      height: 60px;
+      background: linear-gradient(135deg, #ff4757, #ff6b6b);
+      border-radius: 12px 12px 0 0;
+      transition: transform 0.6s ease;
+      transform-origin: bottom center;
+      z-index: 2;
+    }
+    .ribbon-horizontal, .ribbon-vertical {
+      position: absolute;
+      background: #fff;
+    }
+    .ribbon-horizontal {
+      width: 100%;
+      height: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .ribbon-vertical {
+      width: 20px;
+      height: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .bow {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 30px;
+      background: #fff;
+      border-radius: 50% 50% 0 0;
+      animation: bowWave 2s infinite ease-in-out;
+    }
+    @keyframes bowWave {
+      0%,100% { transform: translateX(-50%) rotate(0deg); }
+      50% { transform: translateX(-50%) rotate(10deg); }
+    }
+    .gift-box.open .lid {
+      transform: rotateX(120deg) translateY(-20px);
+    }
+
+    #surprise {
+  display: none; /* hidden first */
+  margin-top: 30px;
+  text-align: center;
+  animation: pop 1s ease forwards;
+}
+
+#surprise.show {
+  display: block; /* show when class added */
+}
+
+#surprise img {
+  width: 400px;           /* 👈 small size */
+  border-radius: 12px;
+  box-shadow: 0 0 15px #ff9ff3;
+  animation: fadeIn 1.5s ease-in forwards;
+  display: block;
+  margin: 0 auto;         /* 👈 center photo */
+}
+
+#surprise p {
+  font-size: 30px;        /* bigger text */
+  font-weight: bold;
+  margin-top: 20px;
+  color: white;
+  text-align: center;     /* 👈 text center */
+  text-shadow: 0 0 10px #ff9ff3, 0 0 20px #48dbfb;
+}
+
+
+
+
+
+
+  
+
+
+    /* ====== Balloons ====== */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 80px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--color));
+      animation: floatUp 8s ease-in-out forwards;
+      z-index: 0;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ====== Confetti ====== */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 20px;
+      background: var(--color);
+      top: 50%;
+      left: 50%;
+      animation: fall linear forwards;
+      z-index: 0;
+    }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background stars -->
+  <div class="stars"></div>
+
+  <h1>Happiee bdy favoo.!😚🤍💎</h1>
+
+  <!-- Song Section -->
+<div class="song-section">
+  <h2>🎶 Birthday Special Song 🎶</h2>
+  <p>Click the button below to play / stop the birthday song</p>
+  <button id="songBtn" onclick="toggleSong()">▶ Play Song</button>
+  <audio id="song" src="c:\Users\ishwarya vijay\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\D34AB169B70C9DCD35E62896010CD9FF\WhatsApp Audio 2025-08-29 at 18.43.53_7faaa299.dat"></audio>
+</div>
+
+<style>
+  .song-section {
+    background: linear-gradient(135deg, #000, #222, #444);
+    border: 2px solid #ff9ff3;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px auto;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 25px #48dbfb, 0 0 50px #ff9ff3;
+    animation: glowBox 3s infinite alternate;
+  }
+
+  .song-section h2 {
+    font-size: 26px;
+    color: #ff9ff3;
+    text-shadow: 0 0 10px #48dbfb, 0 0 20px #ff9ff3;
+    margin-bottom: 10px;
+  }
+
+  .song-section p {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+
+  .song-section button {
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #ff9ff3, #48dbfb);
+    color: black;
+    box-shadow: 0 0 15px #ff9ff3, 0 0 30px #48dbfb;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+
+  .song-section button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #ff9ff3, 0 0 60px #48dbfb;
+  }
+
+  @keyframes glowBox {
+    from { box-shadow: 0 0 20px #48dbfb; }
+    to { box-shadow: 0 0 40px #ff9ff3; }
+  }
+</style>
+
+<script>
+  function toggleSong() {
+    const song = document.getElementById("song");
+    const btn = document.getElementById("songBtn");
+
+    if (song.paused) {
+      song.play();
+      btn.innerText = "⏸ Stop Song";
+    } else {
+      song.pause();
+      song.currentTime = 0;
+      btn.innerText = "▶ Play Song";
+    }
+  }
+</script>
+
+
+<script>
+  function playSong() {
+    document.getElementById("song").play();
+  }
+
+  function pauseSong() {
+    document.getElementById("song").pause();
+    document.getElementById("song").currentTime = 0; // rewind to start
+  }
+</script>
+
+
+  <!-- Wishes Section -->
+  <div class="wish-section">
+    "Happy birthday to my favorite human!💎🤍"
+I truly believe this birthday will definitely bring happiness to you.!✨ Always stay happy and never feel down. But if you ever feel low, just give one call to Pramathani,💯👥okay.!! Since you are my favorite human🫶🏻🥹I will never forget you—so don’t forget me either.🙃
+
+When you get a job, please take me along too, so we can work together.😊 Whenever I feel sad or face struggles, the first person I want to share it with is you.😇
+ Even if you can’t give me a solution, I’ll still feel like I need to tell you.💯
+" That’s how much I trust you. I believe you will never forget me too.😇"
+
+I don’t know if you will read this fully,🙃 but anyway, I pray your life goes just the way you like. 💯✨
+"I feel lucky to have met you and spoken to you—if not, I would’ve missed knowing such a good human.💯🤍"
+" I never wanted to hurt you, and if I ever did, please don’t stay silent. Because I know calming you down would be so hard for me.😁"
+
+"I will never forget you in my entire life. 💯🫶🏻"
+"I never thought I could admire a senior this much😇" but you proved me wrong. 
+"Ur very special to me.!🤗"
+"My bond with you is genuine,😌 and I’ve given you nothing but pure love and care🫶🏻"
+ I’ll always be there with you, no matter what.🙃💯🫂
+
+“Whatever I do next, I will only ask you whether it is right or wrong.✨ You will do everything for me,🙃 and I believe that whatever you do for me will always be good.”😌
+
+“I don’t know whether you like me or not, but I really like you a lot.💯🤍 You also know that, so please don’t think I’m just saying it casually.” 😊
+You said that.! you will get your daughter married to my son."😁
+"Don’t feel too much, and don’t blindly trust anyone.!"
+" Not everyone is a snake; there are good people too. 
+Never feel down okeiii🙃"
+✨"Just a few more days left… I’m going to miss you a lot. It feels really hard for me." 🥺Please don’t forget me, and pick up my call whenever I reach out.🥹 If I ever hurt you in any way, please don’t leave me without saying anything.😊“I wish that smile always stays on your face.”😇
+
+"ONCE AGAIN WISH YOU MANY MORE HAPPY RETURNS OF THE DEAR..!!😚🫂🤍"
+  </div>
+
+  <!-- Photo Gallery -->
+<div class="gallery">
+  <figure>
+    <img src="image1.jpg" alt="Birthday">
+    <figcaption>Ur my supporter.!😇✨</figcaption>
+  </figure>
+  <figure>
+    <img src="image2.jpg" alt="Friends">
+    <figcaption>Ur my special one.!🫶🏻😘</figcaption>
+  </figure>
+  <figure>
+    <img src="image3.jpg" alt="Balloons">
+    <figcaption>Ur my favoo.!😚🤍</figcaption>
+  </figure>
+  <figure>
+    <img src="image4.jpg" alt="Celebration">
+    <figcaption>Ur my well-wisher.!🥹🫂</figcaption>
+  </figure>
+</div>
+<div class="gallery">
+  <figure>
+    <img src="image6.jpg" alt="Birthday">
+    <figcaption>Ur my vaishnavi.!💎🤍</figcaption>
+  </figure>
+  <figure>
+    <img src="image7.jpg" alt="Friends">
+    <figcaption>Hyy Gulab jamun.!😂🫶🏻</figcaption>
+  </figure>
+  <figure>
+    <img src="image8.jpg" alt="Balloons">
+    <figcaption>Heyy vaishuhhh kutty.!😽</figcaption>
+  </figure>
+  <figure>
+    <img src="image9.jpg" alt="Celebration">
+    <figcaption>Ur my guiding light.!☄💗</figcaption>
+  </figure>
+</div>
+
+
+
+  <!-- Fancy Gift Box -->
+  <div class="gift-box" onclick="openGift()">
+    <div class="lid">
+      <div class="ribbon-horizontal"></div>
+      <div class="ribbon-vertical"></div>
+      <div class="bow"></div>
+    </div>
+    <div class="box">
+      <div class="ribbon-horizontal"></div>
+      <div class="ribbon-vertical"></div>
+    </div>
+  </div>
+
+  <!-- Surprise message -->
+<div id="surprise">
+  <img src="image10.jpg" alt="Special" class="surprise-photo">
+  <p>Love youu as always.!🤌🏻😚</p>
+</div>
+
+
+  <script>
+    // Stars background
+    for (let i = 0; i < 50; i++) {
+      let star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 3) + "s";
+      document.querySelector(".stars").appendChild(star);
+    }
+
+    function playSong() {
+      document.getElementById("song").play();
+    }
+
+    function openGift() {
+      const gift = document.querySelector(".gift-box");
+      const msg = document.getElementById("surprise");
+      const song = document.getElementById("song");
+
+      gift.classList.add("open");
+      msg.classList.add("show");   // ✅ fade-in works
+      song.play();
+
+      // Release balloons
+      for (let i = 0; i < 12; i++) {
+        setTimeout(createBalloon, i * 300);
+      }
+
+      // Burst confetti
+      for (let i = 0; i < 40; i++) {
+        setTimeout(createConfetti, i * 100);
+      }
+    }
+
+    // Balloon function
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      balloon.style.left = Math.random() * 100 + "vw";
+      balloon.style.animationDuration = (5 + Math.random() * 5) + "s";
+      balloon.style.setProperty("--color", getRandomColor());
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 9000);
+    }
+
+    // Confetti function
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      confetti.style.left = (50 + Math.random() * 40 - 20) + "%";
+      confetti.style.top = "50%";
+      confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+      confetti.style.setProperty("--color", getRandomColor());
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 5000);
+    }
+
+    // Random color
+    function getRandomColor() {
+      const colors = ["#ff6b6b", "#feca57", "#48dbfb", "#1dd1a1", "#ff9ff3"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+
+  </script>
+
+</body>
+</html>
